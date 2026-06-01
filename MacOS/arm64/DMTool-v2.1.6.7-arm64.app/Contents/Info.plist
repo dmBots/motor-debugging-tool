@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 使用 @变量名@ 格式 -->
+    <key>CFBundleVersion</key>
+    <string>6.3.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>6.3</string>
+    <key>CFBundleIconFile</key>
+    <string>app_icon.icns</string>
+    <!-- 固定值无需替换（应用名称、权限描述） -->
+    <key>CFBundleName</key>
+    <string>DMTool v2.1.6.0</string>
+    <key>NSUSBUsageDescription</key>
+    <string>需要访问USB设备以正常通信</string>
+</dict>
+</plist>
