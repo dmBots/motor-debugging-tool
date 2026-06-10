@@ -1,6 +1,6 @@
 ﻿# DMTool Changelog
 
-[中文](./CHANGELOG.md) | [EN](./CHANGELOG.en.md)
+[Chinese](./CHANGELOG.md) | [English](./CHANGELOG.en.md)
 
 #### Version Update Notes
 
