@@ -12,8 +12,8 @@ The repository root currently includes these runnable assets:
 - `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
 - `Linux/x86_64/arch_lib_install.sh`
 - `Linux/arm64/DMTool-v2.1.6.7-arm64/start.sh`
-- `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- `MacOS/x86_64/DMTool-v2.1.8.1-x86_64.app.zip`
+- `MacOS/arm64/DMTool-v2.1.8.1-arm64.app.zip`
 - `DMTool上位机软件说明书.pdf`
 
 ## Windows
@@ -102,20 +102,28 @@ After that, log out and back in before launching DMTool.
 
 Applicable files:
 
-- Intel: `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- Apple Silicon: `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- Intel: `MacOS/x86_64/DMTool-v2.1.8.1-x86_64.app.zip`
+- Apple Silicon: `MacOS/arm64/DMTool-v2.1.8.1-arm64.app.zip`
 
 How to use it:
 
 1. Open the directory that matches your CPU architecture
-2. Double-click the `.app`
-3. If Gatekeeper blocks the app, allow it from "System Settings -> Privacy & Security"
+2. Extract the zip. It contains `serial-port-assistant.app`
+3. In Terminal, from the directory that contains the extracted app, restore the execute permission and clear the download quarantine flag:
+
+```bash
+chmod +x serial-port-assistant.app/Contents/MacOS/serial-port-assistant
+xattr -cr serial-port-assistant.app
+```
+
+4. Double-click `serial-port-assistant.app`
 
 Notes:
 
 - `x86_64` is for Intel Macs.
 - `arm64` is for Apple Silicon Macs.
-- The `.app` bundles in this directory already contain the runtime frameworks and resources.
+- The `.app` bundles already contain the runtime frameworks and resources.
+- The zip stores the executable without its execute permission. If you skip step 3, macOS reports that the application cannot be opened or that its executable is missing.
 
 ## Additional Documentation
 

@@ -12,8 +12,8 @@
 - `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
 - `Linux/x86_64/arch_lib_install.sh`
 - `Linux/arm64/DMTool-v2.1.6.7-arm64/start.sh`
-- `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- `MacOS/x86_64/DMTool-v2.1.8.1-x86_64.app.zip`
+- `MacOS/arm64/DMTool-v2.1.8.1-arm64.app.zip`
 - `DMTool上位机软件说明书.pdf`
 
 ## Windows
@@ -102,20 +102,28 @@ sudo usermod -aG uucp $USER
 
 适用文件：
 
-- Intel: `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- Apple Silicon: `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- Intel: `MacOS/x86_64/DMTool-v2.1.8.1-x86_64.app.zip`
+- Apple Silicon: `MacOS/arm64/DMTool-v2.1.8.1-arm64.app.zip`
 
 使用方法：
 
 1. 根据芯片架构进入对应目录
-2. 双击 `.app` 启动
-3. 若被 Gatekeeper 拦截，到“系统设置 -> 隐私与安全性”中允许本次打开
+2. 解压 zip，得到 `serial-port-assistant.app`
+3. 在终端中进入解压后 app 所在目录，恢复可执行权限并清除下载隔离标记：
+
+```bash
+chmod +x serial-port-assistant.app/Contents/MacOS/serial-port-assistant
+xattr -cr serial-port-assistant.app
+```
+
+4. 双击 `serial-port-assistant.app` 启动
 
 说明：
 
 - `x86_64` 目录适用于 Intel Mac。
 - `arm64` 目录适用于 Apple Silicon Mac。
-- 当前目录内 `.app` 已包含运行所需框架与资源文件。
+- `.app` 已包含运行所需框架与资源文件。
+- zip 中的可执行文件没有保存可执行权限。若跳过第 3 步，macOS 会提示应用程序无法打开或可执行文件缺失。
 
 ## 配套文档
 
