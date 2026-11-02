@@ -4,6 +4,116 @@
 
 #### Version Update Notes
 
+- **[V2.1.9.4] - 2026.9.17**
+
+  ##### Main Updates:
+
+
+  - Serial port display supports ANSI color coding
+  - Post-write parameter verification can now be optionally disabled to improve CAN write parameter efficiency; pre-write verification is not yet available for disabling; removed the logic that skips writing when parameters are unchanged
+
+  ##### Bug Fixes:
+
+  - Fixed calibration crash issue
+  - Fixed issue where some parameter writes were ineffective
+  - Fixed the issue where USB2CAN module could not correctly use CAN queue sending functionality
+
+- **[V2.1.9.3] - 2026.9.10**
+
+  ##### Main Updates:
+
+
+  - Added a checkbox in the settings interface to disable verification code confirmation
+
+  ##### Bug Fixes:
+
+  - Completed missing translations
+  - Fixed output shaft calibration related issues
+- **[V2.1.9.2] - 2026.9.8**
+
+  ##### Main Updates:
+
+
+  * Queue sending now supports cyclic mode with configurable send count and interval
+
+  ##### Bug Fixes:
+
+  * Special motor output shaft detection now determines communication type based on the special calibration settings instead of the currently selected UART/CAN
+- **[V2.1.9.1] - 2026.9.7**
+
+  ##### Main Updates:
+
+
+  - Calibration results are now displayed even when 6216 special motor calibration fails
+  - Added calibration verification code input and "Strictly prohibited to operate under load" warning
+
+  ##### Bug Fixes:
+
+  - Fixed the issue where the special task flow did not support selecting UART/CAN mode
+  - Fixed the issue where CAN ID / Master ID were not correctly updated after reading/writing parameters
+- **[V2.1.9.0] - 2026.9.3**
+
+  ##### Main Updates:
+
+
+  - Added CAN queue sending function (shortcut key F1)
+  - Added serial port passthrough function
+  - Added parameter fool-proofing and post-write verification
+  - Parameter import/export now includes version number
+  - Added right-click drag zoom for the waveform control
+
+  ##### Bug Fixes:
+
+  - Frame parsing changed from fixed-length reading to search-based pulling
+- **[V2.1.8.6] - 2026.8.7**
+
+  ##### Main Updates:
+
+
+  - Added firmware fool-proofing and output shaft detection; the About page now allows toggling firmware fool-proofing
+
+  ##### Bug Fixes:
+
+  - Fixed abnormal task conflict errors
+  - Fixed serial port data transmission errors with 1-to-4 firmware
+- **[V2.1.8.5] - 2026.8.5**
+
+  ##### Main Updates:
+
+
+  - Added extended parameter read/write (KP_MAX, KD_MAX), requires firmware support
+  - Added 6216 special motor support
+
+  ##### Bug Fixes:
+
+  - Fixed MIT slider range binding error
+- **[V2.1.8.4] - 2026.7.15**
+
+  ##### Main Updates:
+
+
+  - Added CAN analyzer data filtering: supports six-column filtering (frame type, frame format, CAN type, CAN
+    ID, status, data length)
+  - Task gating now covers more scopes: calibration, parameter calibration, read/write parameters, read version, and firmware upgrade are all under unified management to prevent concurrent execution conflicts. Devices are automatically stopped and UI is restored when disconnected
+
+  ##### Bug Fixes:
+
+  - Fixed the issue where firmware upgrade via CAN was not possible on version 2183
+  - Fixed the issue where hot-plugging during firmware upgrade did not correctly stop tasks and restore UI
+- **[V2.1.8.3] - 2026.7.9**
+
+  ##### Main Updates:
+
+
+  - Added task gating to prevent duplicate execution of ongoing tasks
+
+  ##### Bug Fixes:
+
+  - Motor feedback information in the debug interface now initially displays "Na" instead of uninitialized values
+  - Fixed abnormal CAN ID input box style when modification is not allowed in CAN mode
+  - CAN analyzer send interface now correctly switches back to CAN 2.0 send page after closing the device
+  - Fixed CAN ID / Master ID input upper limit in the parameter settings interface
+
 - **[V2.1.8.2] - 2026.7.3**
 
   ##### Main Updates:
@@ -16,7 +126,6 @@
   - Fix issue where serial port cannot correctly print Latin characters
   - Fix device open failure issue
   - Fix data slider mapping error in debug interface
-
 - **[V2.1.8.1] - 2026.6.29**
 
   ##### Main Updates:
@@ -40,7 +149,6 @@
 
   - Fix abnormal window scaling in motor firmware upgrade dialog
   - Fix abnormal CAN version reading issue
-
 - **[V2.1.7.1] - 2026.6.16**
 
   ##### Main Updates:
@@ -377,4 +485,3 @@
 
   - Fixed the firmware upgrade failure caused by changing the CAN frame transmission interval;
   - Fixed the issue where reading and writing parameters with a USB2CAN device could cause frame stalls.
-
