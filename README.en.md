@@ -8,24 +8,25 @@ This document matches the files that currently exist in this directory and is in
 
 The repository root currently includes these runnable assets:
 
-- `Windows/x86_64/DMTool 2.1.6.7.exe`
-- `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
-- `Linux/x86_64/arch_lib_install.sh`
-- `Linux/arm64/DMTool-v2.1.6.7-arm64/start.sh`
-- `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- `Windows/x86_64/DMTool-2.2.2.2-hotfix.exe`
+- `Linux/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz`
+- `Linux/arm64/DMTool-v2.2.2.2-hotfix-arm64.tar.gz`
+- `MacOS/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.app.zip`
+- `MacOS/arm64/DMTool-v2.2.2.2-hotfix-arm64.app.zip`
 - `DMTool上位机软件说明书.pdf`
+
+> Note: Linux and macOS artifacts are distributed as `tar.gz` / `zip` archives. The executable permissions are preserved inside the archives, so the programs can be run directly after extraction. See "Executable permissions" at the end of this document for details.
 
 ## Windows
 
 Applicable file:
 
-- `Windows/x86_64/DMTool 2.1.6.7.exe`
+- `Windows/x86_64/DMTool-2.2.2.2-hotfix.exe`
 
 How to use it:
 
 1. Open `Windows/x86_64/`
-2. Double-click `DMTool 2.1.6.7.exe`
+2. Double-click `DMTool-2.2.2.2-hotfix.exe`
 3. If Windows SmartScreen blocks the app on first launch, choose "More info" and continue
 
 Notes:
@@ -35,32 +36,58 @@ Notes:
 
 ## Linux
 
-Applicable files:
+### x86_64
 
-- `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
-- `Linux/x86_64/arch_lib_install.sh`
+Applicable file:
 
-### Generic run steps
+- `Linux/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz`
+
+Run steps:
 
 1. Open `Linux/x86_64/`
-2. Make the AppImage executable:
+2. Extract the archive:
 
 ```bash
-chmod +x DMTool-v2.1.6.7-x86_64.AppImage
+tar -xzf DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz
 ```
+
+This produces `DMTool-v2.2.2.2-hotfix-x86_64.AppImage` and `arch_lib_install.sh`, both with executable permissions preserved.
 
 3. Run the app:
 
 ```bash
-./DMTool-v2.1.6.7-x86_64.AppImage
+./DMTool-v2.2.2.2-hotfix-x86_64.AppImage
 ```
+
+### arm64
+
+Applicable file:
+
+- `Linux/arm64/DMTool-v2.2.2.2-hotfix-arm64.tar.gz`
+
+Run steps:
+
+1. Open `Linux/arm64/`
+2. Extract the archive:
+
+```bash
+tar -xzf DMTool-v2.2.2.2-hotfix-arm64.tar.gz
+```
+
+3. Enter the extracted directory and run the start script:
+
+```bash
+cd DMTool_arm64
+./start.sh
+```
+
+`start.sh` and `bin/serial-port-assistant` both have executable permissions preserved.
 
 ### Extra dependencies for Arch Linux
 
-If you are on Arch Linux or a compatible distribution and runtime libraries are missing, run:
+If you are on Arch Linux or a compatible distribution and runtime libraries are missing, run (from the x86_64 package):
 
 ```bash
-chmod +x arch_lib_install.sh
 ./arch_lib_install.sh
 ```
 
@@ -102,20 +129,33 @@ After that, log out and back in before launching DMTool.
 
 Applicable files:
 
-- Intel: `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- Apple Silicon: `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- Intel: `MacOS/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.app.zip`
+- Apple Silicon: `MacOS/arm64/DMTool-v2.2.2.2-hotfix-arm64.app.zip`
 
 How to use it:
 
 1. Open the directory that matches your CPU architecture
-2. Double-click the `.app`
-3. If Gatekeeper blocks the app, allow it from "System Settings -> Privacy & Security"
+2. Extract the `.app.zip` (double-click, or use `ditto -x -k <file> .`)
+3. Double-click the extracted `.app`
+4. If Gatekeeper blocks the app, allow it from "System Settings -> Privacy & Security"
 
 Notes:
 
 - `x86_64` is for Intel Macs.
 - `arm64` is for Apple Silicon Macs.
-- The `.app` bundles in this directory already contain the runtime frameworks and resources.
+- The `.app` bundles already contain the runtime frameworks and resources, and the main executable retains its executable permission.
+
+## Executable permissions
+
+The executable permissions for the Linux and macOS artifacts are preserved in the packages:
+
+- Linux artifacts are packaged as `tar.gz` and macOS artifacts as `zip`; the Unix execute bit is recorded inside the archives. After extraction, the AppImage, `arch_lib_install.sh`, `start.sh`, and the `.app` main executable can be run directly — no manual `chmod +x` is needed.
+- Please extract on Linux / macOS using the system's native tools (`tar`, Finder, `ditto`).
+- Note: the Windows filesystem, and archives repacked on Windows, do not preserve the Unix execute bit. If you extract on Windows and then copy to Linux / macOS, the execute permission may be lost; you can restore it manually:
+
+```bash
+chmod +x <file>
+```
 
 ## Additional Documentation
 
@@ -124,7 +164,7 @@ Notes:
 
 ## Version
 
-- DMTool version in this directory: `2.1.6.7`
+- DMTool version in this directory: `2.2.2.2` (hotfix build)
 
 #### Copyright and Third-Party Agreements
 

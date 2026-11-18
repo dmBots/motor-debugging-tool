@@ -1,8 +1,53 @@
-﻿# DMTool Changelog
+# DMTool Changelog
 
 [中文](./CHANGELOG.md) | [EN](./CHANGELOG.en.md)
 
 #### Version Update Notes
+
+- **[V2.2.2.2] - 2026.11.4**
+
+  ##### Bug Fixes:
+
+  - Fixed an issue where the USB2CAN module failed to upgrade firmware over CAN
+
+- **[V2.2.2.1] - 2026.11.3**
+
+  ##### Bug Fixes:
+
+  - Fixed residual devices remaining in the device list after hot-plugging a CANFD module
+
+- **[V2.2.2.0] - 2026.10.27**
+
+  ##### Main Updates:
+
+  - Support for both V1 and V2 CANFD module firmware, with the number of available channels adjusted automatically according to the module type
+  - Improved CAN parameter write speed (now responds in about 1 s)
+
+  ##### Bug Fixes:
+
+  - Motors that do not support KP_MAX/KD_MAX modification now show those parameters as read-only (greyed out) when read over CAN
+
+  ##### Notes:
+
+  - This release lifts the CANFD firmware restrictions on both the firmware and the host software: V2 firmware can be downgraded to V1, and the host software is compatible with both V1 and V2 firmware
+
+- **[V2.2.1.0] - 2026.10.20**
+
+  ##### Main Updates:
+
+  - Added a "current task" display to the status bar
+  - The UI is now locked while a task is running to prevent accidental operation
+
+- **[V2.2.0.0] - 2026.9.18**
+
+  ##### Main Updates:
+
+  - Support for the new CANFD module firmware (V2 firmware), with a prompt to upgrade when older firmware is detected
+
+  ##### Notes:
+
+  - This release requires V2 firmware for the CANFD module, and at the time V2 firmware could not be downgraded to V1
+  - That restriction was specific to 2.2.0.0 and was lifted in V2.2.2.0: V2 firmware can be downgraded, and the host software is compatible with both V1 and V2 firmware
 
 - **[V2.1.9.4] - 2026.9.17**
 
