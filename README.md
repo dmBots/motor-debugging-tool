@@ -8,24 +8,25 @@
 
 当前仓库根目录包含以下可执行资源：
 
-- `Windows/x86_64/DMTool 2.1.6.7.exe`
-- `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
-- `Linux/x86_64/arch_lib_install.sh`
-- `Linux/arm64/DMTool-v2.1.6.7-arm64/start.sh`
-- `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- `Windows/x86_64/DMTool-2.2.2.2-hotfix.exe`
+- `Linux/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz`
+- `Linux/arm64/DMTool-v2.2.2.2-hotfix-arm64.tar.gz`
+- `MacOS/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.app.zip`
+- `MacOS/arm64/DMTool-v2.2.2.2-hotfix-arm64.app.zip`
 - `DMTool上位机软件说明书.pdf`
+
+> 提示：Linux 与 macOS 的产物以 `tar.gz` / `zip` 归档形式提供，归档内已保留可执行权限，解压后可直接运行，详见文末「可执行权限说明」。
 
 ## Windows
 
 适用文件：
 
-- `Windows/x86_64/DMTool 2.1.6.7.exe`
+- `Windows/x86_64/DMTool-2.2.2.2-hotfix.exe`
 
 使用方法：
 
 1. 进入 `Windows/x86_64/`
-2. 双击运行 `DMTool 2.1.6.7.exe`
+2. 双击运行 `DMTool-2.2.2.2-hotfix.exe`
 3. 首次运行如被系统拦截，选择“更多信息”后继续运行
 
 说明：
@@ -35,32 +36,58 @@
 
 ## Linux
 
+### x86_64
+
 适用文件：
 
-- `Linux/x86_64/DMTool-v2.1.6.7-x86_64.AppImage`
-- `Linux/x86_64/arch_lib_install.sh`
+- `Linux/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz`
 
-### 通用运行步骤
+运行步骤：
 
 1. 进入 `Linux/x86_64/`
-2. 为 AppImage 增加可执行权限：
+2. 解压归档：
 
 ```bash
-chmod +x DMTool-v2.1.6.7-x86_64.AppImage
+tar -xzf DMTool-v2.2.2.2-hotfix-x86_64.AppImage.tar.gz
 ```
+
+解压后得到 `DMTool-v2.2.2.2-hotfix-x86_64.AppImage` 与 `arch_lib_install.sh`，两者均已保留可执行权限。
 
 3. 运行程序：
 
 ```bash
-./DMTool-v2.1.6.7-x86_64.AppImage
+./DMTool-v2.2.2.2-hotfix-x86_64.AppImage
 ```
+
+### arm64
+
+适用文件：
+
+- `Linux/arm64/DMTool-v2.2.2.2-hotfix-arm64.tar.gz`
+
+运行步骤：
+
+1. 进入 `Linux/arm64/`
+2. 解压归档：
+
+```bash
+tar -xzf DMTool-v2.2.2.2-hotfix-arm64.tar.gz
+```
+
+3. 进入解压出的目录并运行启动脚本：
+
+```bash
+cd DMTool_arm64
+./start.sh
+```
+
+其中 `start.sh` 与 `bin/serial-port-assistant` 均已保留可执行权限。
 
 ### Arch Linux 额外依赖
 
-若在 Arch Linux 或兼容发行版上缺少运行库，先执行：
+若在 Arch Linux 或兼容发行版上缺少运行库，先执行（x86_64 安装包内）：
 
 ```bash
-chmod +x arch_lib_install.sh
 ./arch_lib_install.sh
 ```
 
@@ -102,20 +129,33 @@ sudo usermod -aG uucp $USER
 
 适用文件：
 
-- Intel: `MacOS/x86_64/DMTool-v2.1.6.7-x86_64.app`
-- Apple Silicon: `MacOS/arm64/DMTool-v2.1.6.7-arm64.app`
+- Intel: `MacOS/x86_64/DMTool-v2.2.2.2-hotfix-x86_64.app.zip`
+- Apple Silicon: `MacOS/arm64/DMTool-v2.2.2.2-hotfix-arm64.app.zip`
 
 使用方法：
 
 1. 根据芯片架构进入对应目录
-2. 双击 `.app` 启动
-3. 若被 Gatekeeper 拦截，到“系统设置 -> 隐私与安全性”中允许本次打开
+2. 解压 `.app.zip`（双击解压，或使用 `ditto -x -k <文件> .`）
+3. 双击解压出的 `.app` 启动
+4. 若被 Gatekeeper 拦截，到“系统设置 -> 隐私与安全性”中允许本次打开
 
 说明：
 
 - `x86_64` 目录适用于 Intel Mac。
 - `arm64` 目录适用于 Apple Silicon Mac。
-- 当前目录内 `.app` 已包含运行所需框架与资源文件。
+- `.app` 已包含运行所需框架与资源文件，且主程序可执行权限已保留。
+
+## 可执行权限说明
+
+Linux 与 macOS 的可执行文件权限已随安装包一并保留：
+
+- Linux 产物以 `tar.gz` 打包、macOS 产物以 `zip` 打包，归档内记录了 Unix 可执行位。解压后 AppImage、`arch_lib_install.sh`、`start.sh` 以及 `.app` 主程序均可直接运行，无需再手动 `chmod +x`。
+- 请在 Linux / macOS 上使用系统自带工具解压（`tar`、Finder、`ditto`）。
+- 注意：Windows 文件系统及在 Windows 上重新打包的压缩包不保留 Unix 可执行位。若在 Windows 上解压后再拷贝到 Linux / macOS，可能丢失执行权限，此时可手动恢复：
+
+```bash
+chmod +x <文件名>
+```
 
 ## 配套文档
 
@@ -124,7 +164,7 @@ sudo usermod -aG uucp $USER
 
 ## 版本
 
-- 当前目录中的 DMTool 版本：`2.1.6.7`
+- 当前目录中的 DMTool 版本：`2.2.2.2`（hotfix 构建）
 
 #### 版权与第三方协议
 
